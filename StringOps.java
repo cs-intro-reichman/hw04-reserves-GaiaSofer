@@ -22,21 +22,76 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        
+        System.out.println(capVowelsLowRest("Hello World"));        // "hEllO wOrld"
+        System.out.println(capVowelsLowRest("One two tHRee world")); // "OnE twO thrEE wOrld"
+        System.out.println(capVowelsLowRest("vowels are fun"));       // "vOwEls ArE fUn"
+        System.out.println(capVowelsLowRest("intro"));               // "IntrO"
+        System.out.println(capVowelsLowRest("yellow"));              // "yEllOw"
+        System.out.println(camelCase("Hello World"));                // "helloWorld"
+        System.out.println(camelCase("HELLO world"));                // "helloWorld"
+        System.out.println(camelCase(" tWo      wordS"));             // "twoWords"
+        System.out.println(camelCase("world"));                      // "world"
+        System.out.println(allIndexOf("Hello world",'l'));       // Output: {2, 3, 9}
+        System.out.println(allIndexOf("Hello world",' '));       // output: {5}
+        System.out.println(allIndexOf("Hello world",'o'));        // output: {4, 7}
+        System.out.println(allIndexOf("MMMM",'M'));              // output: {0, 1, 2, 3}
+        System.out.println(allIndexOf("Hello worLd",'l'));       // output: {2, 3}
     }
 
     public static String capVowelsLowRest (String string) {
-        // Write your code here:
-        return "";
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < string.length(); i++) {
+            char ch = string.charAt(i);
+
+            if (isVowel(ch)) {
+                result.append(Character.toUpperCase(ch));
+            } else {
+                result.append(Character.toLowerCase(ch));
+            }
+        }
+
+        return result.toString();
     }
+
+    private static boolean isVowel(char ch) {
+        char lowerCh = Character.toLowerCase(ch);
+        return lowerCh == 'a' || lowerCh == 'e' || lowerCh == 'i' || lowerCh == 'o' || lowerCh == 'u';
+    }
+
 
     public static String camelCase (String string) {
-        // Write your code here:
-        return "";
+        string = string.trim();
+        StringBuilder newString = new StringBuilder();
+        boolean capitalizeNext = true;
+    
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) == ' ' || string.charAt(i) == '-' || string.charAt(i) == '_') {
+                capitalizeNext = true;
+            } else {
+                if (capitalizeNext) {
+                    newString.append(Character.toUpperCase(string.charAt(i)));
+                    capitalizeNext = false;
+                } else {
+                    newString.append(Character.toLowerCase(string.charAt(i)));
+                }
+            }}
+    
+        return newString.toString();
     }
+    
+
 
     public static int[] allIndexOf (String string, char chr) {
-        // Write your code here:
-        return new int[1];
-    }
-}
+        int strLength = string.length();
+        int[] indexes = new int[strLength];
+        int currentIndex = 0;
+
+        while (string.length() > 0 && string.indexOf(chr) > -1) {
+            int charIndex = string.indexOf(chr);
+            indexes[currentIndex] = currentIndex + charIndex;
+            currentIndex += charIndex + 1;
+            string = string.substring(charIndex + 1);
+        }
+        return indexes;
+    }}
