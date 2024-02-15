@@ -18,6 +18,7 @@ public class ArrayOps {
         System.out.println(isSorted(new int[]{1, -2, 3}));
         System.out.println(isSorted(new int[]{1, 1, 500}));
         System.out.println(isSorted(new int[]{1, 3, 2}));
+        System.out.println(secondMaxValue(new int[]{2, 8, 3, 7, 8}));
     }
 
     public static int findMissingInt(int[] array) {
@@ -33,22 +34,25 @@ public class ArrayOps {
     }
 
     public static int secondMaxValue(int[] array) {
-            int max = Integer.MIN_VALUE;
-            int secondMax = Integer.MIN_VALUE;
-        
-            for (int num : array) {
-                // finds maximum number
-                if (num > max) {
-                    secondMax = max;
-                    max = num;
-                    // finds second maximum number
-                } else if (num > secondMax && num != max) {
-                    secondMax = num;
-                }
+        int max = Integer.MIN_VALUE;
+        int secondMax = Integer.MIN_VALUE;
+    
+        for (int num : array) {
+            // finds maximum number
+            if (num > max) {
+                secondMax = max;
+                max = num;
+                // finds second maximum number
+            } else if (num > secondMax && num != max) {
+                secondMax = num;
+            } else if (num == max && num > secondMax) {
+                // Handle the case of repeated maximum values
+                secondMax = num;
             }
-            return secondMax;
         }
-
+        return secondMax;
+    }
+    
     public static boolean containsTheSameElements(int[] array1, int[] array2) {
         boolean identical = true;
         // checks for a match
