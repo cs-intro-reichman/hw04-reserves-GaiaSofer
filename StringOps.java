@@ -61,26 +61,26 @@ public class StringOps {
 
 
     public static String camelCase (String string) {
-        string = string.trim();
-        StringBuilder newString = new StringBuilder();
-        boolean capitalizeNext = true;
-    
-        for (int i = 0; i < string.length(); i++) {
-            char currentChar = string.charAt(i);
-    
-            if (currentChar == ' ' || currentChar == '-' || currentChar == '_') {
-                capitalizeNext = true;
-            } else {
-                if (capitalizeNext) {
-                    newString.append(Character.toUpperCase(currentChar));
-                    capitalizeNext = false;
+            string = string.trim();
+            StringBuilder newString = new StringBuilder();
+            boolean capitalizeNext = false;
+        
+            for (int i = 0; i < string.length(); i++) {
+                char currentChar = string.charAt(i);
+        
+                if (currentChar == ' ' || currentChar == '-' || currentChar == '_') {
+                    capitalizeNext = true;
                 } else {
-                    newString.append(Character.toLowerCase(currentChar));
+                    if (capitalizeNext) {
+                        newString.append(Character.toUpperCase(currentChar));
+                        capitalizeNext = false;
+                    } else {
+                        newString.append(Character.toLowerCase(currentChar));
+                    }
                 }
             }
-        }
-    
-        return newString.toString();
+        
+            return newString.toString();
     }
 
 
