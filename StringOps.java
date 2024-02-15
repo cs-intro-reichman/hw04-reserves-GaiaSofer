@@ -66,32 +66,35 @@ public class StringOps {
         boolean capitalizeNext = true;
     
         for (int i = 0; i < string.length(); i++) {
-            if (string.charAt(i) == ' ' || string.charAt(i) == '-' || string.charAt(i) == '_') {
+            char currentChar = string.charAt(i);
+    
+            if (currentChar == ' ' || currentChar == '-' || currentChar == '_') {
                 capitalizeNext = true;
             } else {
                 if (capitalizeNext) {
-                    newString.append(Character.toUpperCase(string.charAt(i)));
+                    newString.append(Character.toUpperCase(currentChar));
                     capitalizeNext = false;
                 } else {
-                    newString.append(Character.toLowerCase(string.charAt(i)));
+                    newString.append(Character.toLowerCase(currentChar));
                 }
-            }}
+            }
+        }
     
         return newString.toString();
     }
-    
 
 
     public static int[] allIndexOf (String string, char chr) {
         int strLength = string.length();
         int[] indexes = new int[strLength];
         int currentIndex = 0;
-
-        while (string.length() > 0 && string.indexOf(chr) > -1) {
-            int charIndex = string.indexOf(chr);
-            indexes[currentIndex] = currentIndex + charIndex;
-            currentIndex += charIndex + 1;
-            string = string.substring(charIndex + 1);
-        }
+    
+            while (string.length() > 0 && string.indexOf(chr) > -1) {
+                int charIndex = string.indexOf(chr);
+                indexes[currentIndex] = currentIndex + charIndex;
+                currentIndex++;
+                string = string.substring(charIndex + 1);
+            }
+    
         return indexes;
     }}
