@@ -33,21 +33,21 @@ public class ArrayOps {
     }
 
     public static int secondMaxValue(int[] array) {
-        int max = Integer.MIN_VALUE;
-        int secondMax = Integer.MIN_VALUE;
-
-        for (int num : array) {
-            // finds maximum number
-            if (num > max) {
-                secondMax = max;
-                max = num;
-                // finds second maximum number
-            } else if (num > secondMax && num < max) {
-                secondMax = num;
+            int max = Integer.MIN_VALUE;
+            int secondMax = Integer.MIN_VALUE;
+        
+            for (int num : array) {
+                // finds maximum number
+                if (num > max) {
+                    secondMax = max;
+                    max = num;
+                    // finds second maximum number
+                } else if (num > secondMax && num != max) {
+                    secondMax = num;
+                }
             }
+            return secondMax;
         }
-        return secondMax;
-    }
 
     public static boolean containsTheSameElements(int[] array1, int[] array2) {
         boolean identical = true;
