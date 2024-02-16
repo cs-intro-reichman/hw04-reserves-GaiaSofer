@@ -63,7 +63,7 @@ public class StringOps {
 
 
     public static String camelCase (String string) {
-            
+            string = string.trim();
             StringBuilder newString = new StringBuilder();
             boolean capitalizeNext = false;
         
