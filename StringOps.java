@@ -39,6 +39,7 @@ public class StringOps {
     }
 
     public static String capVowelsLowRest (String string) {
+        
         StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < string.length(); i++) {
@@ -55,20 +56,21 @@ public class StringOps {
     }
 
     private static boolean isVowel(char ch) {
+        
         char lowerCh = Character.toLowerCase(ch);
         return lowerCh == 'a' || lowerCh == 'e' || lowerCh == 'i' || lowerCh == 'o' || lowerCh == 'u';
     }
 
 
     public static String camelCase (String string) {
-            string = string.trim();
+            
             StringBuilder newString = new StringBuilder();
             boolean capitalizeNext = false;
         
             for (int i = 0; i < string.length(); i++) {
                 char currentChar = string.charAt(i);
         
-                if (currentChar == ' ' || currentChar == '-' || currentChar == '_') {
+                if (currentChar == ' ') {
                     capitalizeNext = true;
                 } else {
                     if (capitalizeNext) {
@@ -85,16 +87,27 @@ public class StringOps {
 
 
     public static int[] allIndexOf (String string, char chr) {
-        int strLength = string.length();
-        int[] indexes = new int[strLength];
-        int currentIndex = 0;
-    
-            while (string.length() > 0 && string.indexOf(chr) > -1) {
-                int charIndex = string.indexOf(chr);
-                indexes[currentIndex] = currentIndex + charIndex;
-                currentIndex++;
-                string = string.substring(charIndex + 1);
+        
+        int count = 0;
+
+        //determine the size of the result
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) == chr) {
+                count++;
             }
-    
-        return indexes;
+        }
+
+        //the result
+        int[] result = new int[count];
+        int resultIndex = 0;
+
+        //indexes
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) == chr) {
+                result[resultIndex] = i;
+                resultIndex++;
+            }
+        }
+
+        return result;
     }}
