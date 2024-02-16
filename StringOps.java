@@ -63,28 +63,27 @@ public class StringOps {
 
 
     public static String camelCase (String string) {
-            string = string.trim();
-            StringBuilder newString = new StringBuilder();
-            boolean capitalizeNext = false;
         
-            for (int i = 0; i < string.length(); i++) {
-                char currentChar = string.charAt(i);
-        
-                if (currentChar == ' ') {
-                    capitalizeNext = true;
+        StringBuilder newString = new StringBuilder();
+        boolean capitalizeNext = true; //capitalize the first character
+    
+        for (int i = 0; i < string.length(); i++) {
+            char currentChar = string.charAt(i);
+    
+            if (currentChar == ' ') {
+                capitalizeNext = true;
+            } else {
+                if (capitalizeNext) {
+                    newString.append(Character.toUpperCase(currentChar));
+                    capitalizeNext = false;
                 } else {
-                    if (capitalizeNext) {
-                        newString.append(Character.toUpperCase(currentChar));
-                        capitalizeNext = false;
-                    } else {
-                        newString.append(Character.toLowerCase(currentChar));
-                    }
+                    newString.append(Character.toLowerCase(currentChar));
                 }
             }
-        
-            return newString.toString();
+        }
+    
+        return newString.toString();
     }
-
 
     public static int[] allIndexOf (String string, char chr) {
         
