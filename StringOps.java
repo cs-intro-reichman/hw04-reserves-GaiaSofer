@@ -39,7 +39,6 @@ public class StringOps {
     }
 
     public static String capVowelsLowRest (String string) {
-        
         StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < string.length(); i++) {
@@ -56,37 +55,36 @@ public class StringOps {
     }
 
     private static boolean isVowel(char ch) {
-        
         char lowerCh = Character.toLowerCase(ch);
         return lowerCh == 'a' || lowerCh == 'e' || lowerCh == 'i' || lowerCh == 'o' || lowerCh == 'u';
     }
 
 
     public static String camelCase (String string) {
+            string = string.trim();
+            StringBuilder newString = new StringBuilder();
+            boolean capitalizeNext = false;
         
-        StringBuilder newString = new StringBuilder();
-        boolean capitalizeNext = true; //capitalize the first character
-    
-        for (int i = 0; i < string.length(); i++) {
-            char currentChar = string.charAt(i);
-    
-            if (currentChar == ' ') {
-                capitalizeNext = true;
-            } else {
-                if (capitalizeNext) {
-                    newString.append(Character.toUpperCase(currentChar));
-                    capitalizeNext = false;
+            for (int i = 0; i < string.length(); i++) {
+                char currentChar = string.charAt(i);
+        
+                if (currentChar == ' ') {
+                    capitalizeNext = true;
                 } else {
-                    newString.append(Character.toLowerCase(currentChar));
+                    if (capitalizeNext) {
+                        newString.append(Character.toUpperCase(currentChar));
+                        capitalizeNext = false;
+                    } else {
+                        newString.append(Character.toLowerCase(currentChar));
+                    }
                 }
             }
-        }
-    
-        return newString.toString();
+        
+            return newString.toString();
     }
 
+
     public static int[] allIndexOf (String string, char chr) {
-        
         int count = 0;
 
         //determine the size of the result
